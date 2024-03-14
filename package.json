@@ -1,0 +1,7 @@
+{
+    "name": "tmdb-api-vercel",
+    "license": "MIT",
+    "dependencies": {
+        "axios": "^0.24.0"
+    }
+}
