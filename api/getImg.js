@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
 
   try {
     // 发送 HTTP 请求以获取 TMDb API 的响应
-    // const response = await axios.get(imgUrl);
+    const response = await axios.get(imgUrl);
     fs.readFile(imgUrl, function(err, data) {
       if (err) {
           res.end('Error loading image');
