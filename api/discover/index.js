@@ -9,13 +9,24 @@ module.exports = async (req, res) => {
   const { url: requestUrl, body } = req;
   const parsedUrl = url.parse(requestUrl);
   const query = querystring.parse(parsedUrl.query);
-
-  const tmdbUrl = `https://api.themoviedb.org/3/discover/${query.type || body.type}\
-?include_adult=${query.include_adult || body.include_adult}\
-&language=${query.language || body.language}\
-&page=${query.page || body.page}\
-&sort_by=${query.sort_by || body.sort_by}\
+  if(!isObjectEmpty(body))
+  {
+      const tmdbUrl = `https://api.themoviedb.org/3/discover/${body.type}\
+?include_adult=${body.include_adult}\
+&language=${body.language}\
+&page=${body.page}\
+&sort_by=${body.sort_by}\
 &api_key=${apiKey}`;
+  }else if(!isObjectEmpty(query)){
+      const tmdbUrl = `https://api.themoviedb.org/3/discover/${query.type}\
+?include_adult=${query.include_adult}\
+&language=${query.language}\
+&page=${query.page}\
+&sort_by=${query.sort_by}\
+&api_key=${apiKey}`;
+  }else{
+    tmdbUrl=`https://api.themoviedb.org/3/discover?api_key=${apiKey}`
+  }
   try {
     const response = await axios.get(tmdbUrl);
     res.send(response.data);
@@ -23,3 +34,10 @@ module.exports = async (req, res) => {
     res.status(500).send('Error fetching data from TMDb API');
   }
 };
+
+function isObjectEmpty(obj) {
+  if(typeof obj === "undefined"){
+    return true;
+  }
+  return false;
+}
