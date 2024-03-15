@@ -17,30 +17,20 @@ module.exports = async (req, res) => {
   imgUrl = `https://image.tmdb.org${requestUrl}`;
 
   try {
-    // // 发送 HTTP 请求以获取 TMDb API 的响应
-    // const response = await axios.get(imgUrl);
-    // response.setEncoding("binary");
-    // response.on('data', function (chunk) {
-    //   data += chunk;
-    // });
-    // // 当数据接收完毕之后，会触发end事件
-    // response.on("end", function () {
-    //   //写入文件
-    //   fs.writeFile('./1.jpg', data, 'binary', (err) => {
-    //     if (err) {
-    //       console.log('写入文件错误')
-    //     } else {
-    //       console.log('写入文件成功')
-    //     }
-    //   })
-    // });
-    var content = fs.readFileSync(imgUrl,"binary");   //格式必须为 binary 否则会出错
-    res.write(content,"binary"); //格式必须为 binary，否则会出错
-  }catch (error) {
-    // 处理错误情况
-    res.statusCode = 500;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end(`${error}`);
-    console.log(`${imgUrl}`);
-  }
+        // 使用axios获取远程图像数据
+        const response = await axios.get(imgUrl, { responseType: 'arraybuffer' });
+
+        // 设置响应头，告诉浏览器返回的是图片数据
+        res.writeHead(200, {
+            'Content-Type': 'image/jpeg',
+            'Content-Length': response.data.length
+        });
+
+        // 将获取到的图像数据直接输出到浏览器
+        res.end(response.data, 'binary');
+    } catch (error) {
+        console.error('Error fetching image:', error);
+        res.writeHead(500, { 'Content-Type': 'text/plain' });
+        res.end(${error});
+    }
 };
