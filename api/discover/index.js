@@ -18,6 +18,6 @@ module.exports = async (req, res) => {
     res.send(response.data);
   } catch (error) {
     // 处理错误情况
-    res.status(500).send('Error fetching data from TMDb API');
+    res.status(500).send(`${tmdbUrl}`);
   }
 };
