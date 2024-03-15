@@ -6,3 +6,5 @@ function isObjectEmpty(obj) {
   }
   return false;
 }
+
+module.exports = {apiKey,isObjectEmpty};

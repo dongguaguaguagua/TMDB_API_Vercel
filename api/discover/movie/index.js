@@ -4,8 +4,6 @@ const url = require('url');
 const querystring = require('querystring');
 const common = require('../../../utility/common.js')
 
-// const apiKey = process.env.TMDB_API_KEY;
-
 module.exports = async (req, res) => {
   const { url: requestUrl, body } = req;
   const parsedUrl = url.parse(requestUrl);
