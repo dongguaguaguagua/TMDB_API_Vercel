@@ -1,4 +1,4 @@
-import {apiKey,isObjectEmpty} from '@/utility/common.js'
+import {apiKey,isObjectEmpty} from '../../../utility/common.js'
 
 var tmdbUrl = "https://api.themoviedb.org"
 const axios = require('axios');
