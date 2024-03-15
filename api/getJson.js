@@ -7,11 +7,13 @@ const common = require('../utility/common.js')
 module.exports = async (req, res) => {
   var { url: requestUrl} = req;
   const parsedUrl = url.parse(requestUrl);
+  // 重定向的`/get`必须去除
   if (!requestUrl.startsWith("/get")) {
     return;
   }else{
     requestUrl = requestUrl.replace(/^\/get/, '');
   }
+  // 如果`api_key`前面存在参数，则`api_key`前面是'&'，否则前面就是是'?'
   if(parsedUrl.query===null){
     tmdbUrl = `https://api.themoviedb.org/3${requestUrl}?api_key=${common.apiKey}`;
   }else {
@@ -30,14 +32,7 @@ module.exports = async (req, res) => {
     // 处理错误情况
     res.statusCode = 500;
     res.setHeader('Content-Type', 'text/plain');
-    res.end(`${tmdbUrl}`);
+    res.end(`${error}`);
     console.log(`${tmdbUrl}`);
   }
 };
-
-function isObjectEmpty(obj) {
-  if(typeof obj === "undefined"){
-    return true;
-  }
-  return false;
-}
