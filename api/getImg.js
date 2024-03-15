@@ -3,6 +3,7 @@ const http = require('http');
 const axios = require('axios');
 const url = require('url');
 const common = require('../utility/common.js')
+const fs = require('fs');
 
 module.exports = async (req, res) => {
   var { url: requestUrl} = req;
@@ -17,12 +18,19 @@ module.exports = async (req, res) => {
 
   try {
     // 发送 HTTP 请求以获取 TMDb API 的响应
-    const response = await axios.get(imgUrl);
+    // const response = await axios.get(imgUrl);
+    fs.readFile(imgUrl, function(err, data) {
+      if (err) {
+          res.end('Error loading image');
+      } else {
+          res.end(data);
+      }
+    });
     // 将 TMDb API 的响应返回给调用方
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'application/json');
-    res.end(response.data);
-    console.log(imgUrl)
+    // res.statusCode = 200;
+    // res.setHeader('Content-Type', 'application/json');
+    // res.end(response.data);
+    // console.log(imgUrl)
   }catch (error) {
     // 处理错误情况
     res.statusCode = 500;
