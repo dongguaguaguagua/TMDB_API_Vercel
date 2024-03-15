@@ -25,13 +25,19 @@ module.exports = async (req, res) => {
 &sort_by=${query.sort_by}\
 &api_key=${apiKey}`;
   }else{
-    tmdbUrl=`https://api.themoviedb.org/3/discover?api_key=${apiKey}`
+    const tmdbUrl=`https://api.themoviedb.org/3/discover?api_key=${apiKey}`
   }
   try {
     const response = await axios.get(tmdbUrl);
     res.send(response.data);
   } catch (error) {
-    res.status(500).send('Error fetching data from TMDb API');
+    res.status(500).send(`Error fetching data from TMDb API
+      tmdbUrl:${tmdbUrl}
+      body:${body}
+      query:${query}
+      is Body empty:${isObjectEmpty(body)}
+      is query empty:${isObjectEmpty(query)}
+      `);
   }
 };
 
