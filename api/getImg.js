@@ -6,13 +6,12 @@ const common = require('../utility/common.js')
 
 module.exports = async (req, res) => {
   var { url: requestUrl} = req;
-  // 重定向的`/get`必须去除
+  // 重定向的`/img`必须去除
   if (!requestUrl.startsWith("/img")) {
     return;
   }else{
     requestUrl = requestUrl.replace(/^\/img/, '');
   }
-  // 如果`api_key`前面存在参数，则`api_key`前面是'&'，否则前面就是是'?'
   imgUrl = `https://image.tmdb.org${requestUrl}`;
 
   try {
