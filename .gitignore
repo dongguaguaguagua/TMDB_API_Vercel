@@ -1,7 +1,6 @@
 test.json
-index.js
 package-lock.json
-
+nodeTest.js
 .DS_Store
 
 node_modules/
