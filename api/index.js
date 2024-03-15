@@ -7,6 +7,11 @@ const common = require('../utility/common.js')
 module.exports = async (req, res) => {
   const { url: requestUrl} = req;
   const parsedUrl = url.parse(requestUrl);
+  if (!requestUrl.startsWith("/get")) {
+    return;
+  }else{
+    requestUrl = requestUrl.replace(/^\/get/, '');
+  }
   if(parsedUrl.query===null){
     tmdbUrl = `https://api.themoviedb.org/3${requestUrl}?api_key=${common.apiKey}`;
   }else {
