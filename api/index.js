@@ -5,7 +5,7 @@ const url = require('url');
 const common = require('../utility/common.js')
 
 module.exports = async (req, res) => {
-  const { url: requestUrl} = req;
+  var { url: requestUrl} = req;
   const parsedUrl = url.parse(requestUrl);
   if (!requestUrl.startsWith("/get")) {
     return;
