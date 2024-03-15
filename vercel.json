@@ -3,6 +3,10 @@
         {
             "source": "/get/(.*)",
             "destination": "/api/getJson"
+        },
+        {
+            "source": "/img/(.*)",
+            "destination": "/api/getImg"
         }
     ]
 }
