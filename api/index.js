@@ -2,14 +2,11 @@ var tmdbUrl = "https://api.themoviedb.org"
 const http = require('http');
 const axios = require('axios');
 const url = require('url');
-const querystring = require('querystring');
 const common = require('../utility/common.js')
 
-const server = http.createServer(async (req, res) => {
-  // const { body } = req;
+module.exports = async (req, res) => {
   const { url: requestUrl} = req;
   const parsedUrl = url.parse(requestUrl);
-
   if(parsedUrl.query===null){
     tmdbUrl = `https://api.themoviedb.org/3${requestUrl}?api_key=${common.apiKey}`;
   }else {
@@ -31,11 +28,7 @@ const server = http.createServer(async (req, res) => {
     res.end(`${error}`);
     console.log(`${tmdbUrl}`);
   }
-});
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+};
 
 function isObjectEmpty(obj) {
   if(typeof obj === "undefined"){
