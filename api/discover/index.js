@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
   const parsedUrl = url.parse(requestUrl);
   const query = querystring.parse(parsedUrl.query);
 
-  const tmdbUrl = `https://api.themoviedb.org/3/discover/${body.type}\
+  const tmdbUrl = `https://api.themoviedb.org/3/discover/${query.type || body.type}\
 ?include_adult=${query.include_adult || body.include_adult}\
 &language=${query.language || body.language}\
 &page=${query.page || body.page}\

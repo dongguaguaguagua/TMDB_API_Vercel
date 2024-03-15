@@ -1,7 +1,19 @@
 {
-    "name": "tmdb-api-vercel",
-    "license": "MIT",
+    "name": "tmdb_api_vercel",
+    "version": "1.0.0",
+    "description": "A vercel service to get access to tmdb in China.",
+    "main": "index.js",
+    "keywords": [],
+    "scripts": {
+        "start": "yarn serve",
+        "serve": "serve -s build"
+    },
+    "author": "",
+    "license": "ISC",
     "dependencies": {
-        "axios": "^0.24.0"
+        "axios": "^1.6.7",
+        "querystring": "^0.2.1",
+        "serve": "^14.2.1",
+        "url": "^0.11.3"
     }
 }

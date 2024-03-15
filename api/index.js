@@ -1,6 +1,7 @@
 const axios = require('axios');
 const apiKey = process.env.TMDB_API_KEY;
 // const apiKey = process.env.TMDB_API_KEY;
+
 module.exports = async (req, res) => {
   const { body } = req;
   const tmdbUrl = `https://api.themoviedb.org/3/movie/${body.id}?api_key=${apiKey}`;
