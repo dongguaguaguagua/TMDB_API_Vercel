@@ -31,6 +31,6 @@ module.exports = async (req, res) => {
     } catch (error) {
         console.error('Error fetching image:', error);
         res.writeHead(500, { 'Content-Type': 'text/plain' });
-        res.end(${error});
+        res.end(`${error}`);
     }
 };
