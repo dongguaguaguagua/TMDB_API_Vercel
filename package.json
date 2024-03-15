@@ -1,6 +1,6 @@
 {
     "name": "tmdb_api_vercel",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "description": "A vercel service to get access to tmdb in China.",
     "main": "index.js",
     "keywords": [],

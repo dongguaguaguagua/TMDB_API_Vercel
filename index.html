@@ -1,1 +1,33 @@
-hello!
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>TMDB API Vercel</title>
+</head>
+<body style="margin-left: 10%;"><h1 id='tmdb-api-vercel'>TMDb API Vercel</h1>
+<p>让你在中国大陆快速访问TMDb的API</p>
+<p>A vercel service to get access to TMDb in China.</p>
+<h2 id='原理'>原理</h2>
+<p>使用Vercel的serverless function利用nodejs作为后端，访问TMDb的数据后传入本地。</p>
+<h2 id='如何部署'>如何部署</h2>
+<ol start='' >
+<li>将本项目fork至私人仓库</li>
+<li>在Vercel中点击import导入仓库</li>
+<li>在environment variable中添加变量：<code>TMDB_API_KEY</code>，值为你申请到的TMDb API密钥</li>
+<li>点击deploy，等待部署完成</li>
+<li>点击domains绑定你的域名，即可使用～</li>
+
+</ol>
+<h2 id='使用指南'>使用指南</h2>
+<p>TMDb的数据分为json数据和图片数据。</p>
+<p><code>https://www.example.com/get/</code>对应的是<code>https://api.themoviedb.org/3/</code></p>
+<p><code>https://www.example.com/img/</code>对应的是<code>https://image.tmdb.org/</code></p>
+<p>以<code>https://tmdb.melonhu.cn</code>为例：</p>
+<ul>
+<li>访问《星球大战》电影数据：<a href='https://tmdb.melonhu.cn/get/movie/11'>https://tmdb.melonhu.cn/get/movie/11</a></li>
+<li>发现电影：<a href='https://tmdb.melonhu.cn/get/discover/movie?page=1&amp;language=zh-CN'>https://tmdb.melonhu.cn/get/discover/movie?page=1&amp;language=zh-CN</a></li>
+<li>访问图片：<a href='https://tmdb.melonhu.cn/img/t/p/original/1E5baAaEse26fej7uHcjOgEE2t2.jpg'>https://tmdb.melonhu.cn/img/t/p/original/1E5baAaEse26fej7uHcjOgEE2t2.jpg</a></li>
+
+</ul>
+</body>
+</html>
