@@ -1,3 +1,5 @@
+var tmdbUrl = "https://api.themoviedb.org"
+
 const axios = require('axios');
 const url = require('url');
 const querystring = require('querystring');
@@ -11,21 +13,21 @@ module.exports = async (req, res) => {
   const query = querystring.parse(parsedUrl.query);
   if(!isObjectEmpty(body))
   {
-      const tmdbUrl = `https://api.themoviedb.org/3/discover/${body.type}\
+      tmdbUrl = `https://api.themoviedb.org/3/discover/${body.type}\
 ?include_adult=${body.include_adult}\
 &language=${body.language}\
 &page=${body.page}\
 &sort_by=${body.sort_by}\
 &api_key=${apiKey}`;
   }else if(!isObjectEmpty(query)){
-      const tmdbUrl = `https://api.themoviedb.org/3/discover/${query.type}\
+      tmdbUrl = `https://api.themoviedb.org/3/discover/${query.type}\
 ?include_adult=${query.include_adult}\
 &language=${query.language}\
 &page=${query.page}\
 &sort_by=${query.sort_by}\
 &api_key=${apiKey}`;
   }else{
-    const tmdbUrl=`https://api.themoviedb.org/3/discover?api_key=${apiKey}`
+      tmdbUrl=`https://api.themoviedb.org/3/discover?api_key=${apiKey}`
   }
   try {
     const response = await axios.get(tmdbUrl);
