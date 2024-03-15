@@ -17,23 +17,25 @@ module.exports = async (req, res) => {
   imgUrl = `https://image.tmdb.org${requestUrl}`;
 
   try {
-    // 发送 HTTP 请求以获取 TMDb API 的响应
-    const response = await axios.get(imgUrl);
-    response.setEncoding("binary");
-    response.on('data', function (chunk) {
-      data += chunk;
-    });
-    // 当数据接收完毕之后，会触发end事件
-    response.on("end", function () {
-      //写入文件
-      fs.writeFile('./1.jpg', data, 'binary', (err) => {
-        if (err) {
-          console.log('写入文件错误')
-        } else {
-          console.log('写入文件成功')
-        }
-      })
-    });
+    // // 发送 HTTP 请求以获取 TMDb API 的响应
+    // const response = await axios.get(imgUrl);
+    // response.setEncoding("binary");
+    // response.on('data', function (chunk) {
+    //   data += chunk;
+    // });
+    // // 当数据接收完毕之后，会触发end事件
+    // response.on("end", function () {
+    //   //写入文件
+    //   fs.writeFile('./1.jpg', data, 'binary', (err) => {
+    //     if (err) {
+    //       console.log('写入文件错误')
+    //     } else {
+    //       console.log('写入文件成功')
+    //     }
+    //   })
+    // });
+    var content = fs.readFileSync(imgUrl,"binary");   //格式必须为 binary 否则会出错
+    res.write(content,"binary"); //格式必须为 binary，否则会出错
   }catch (error) {
     // 处理错误情况
     res.statusCode = 500;
