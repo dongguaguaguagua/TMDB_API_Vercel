@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
     // 将 TMDb API 的响应返回给调用方
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(response.data));
+    res.end(response.data);
     console.log(imgUrl)
   }catch (error) {
     // 处理错误情况
