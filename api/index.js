@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
     // 处理错误情况
     res.statusCode = 500;
     res.setHeader('Content-Type', 'text/plain');
-    res.end(`${error}`);
+    res.end(`${tmdbUrl}`);
     console.log(`${tmdbUrl}`);
   }
 };
