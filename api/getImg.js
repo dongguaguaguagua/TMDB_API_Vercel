@@ -19,18 +19,21 @@ module.exports = async (req, res) => {
   try {
     // 发送 HTTP 请求以获取 TMDb API 的响应
     const response = await axios.get(imgUrl);
-    fs.readFile(imgUrl, function(err, data) {
-      if (err) {
-          res.end('Error loading image');
-      } else {
-          res.end(data);
-      }
+    response.setEncoding("binary");
+    response.on('data', function (chunk) {
+      data += chunk;
     });
-    // 将 TMDb API 的响应返回给调用方
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'image/jpeg');
-    res.end(response.data);
-    console.log(imgUrl)
+    // 当数据接收完毕之后，会触发end事件
+    response.on("end", function () {
+      //写入文件
+      fs.writeFile('./1.jpg', data, 'binary', (err) => {
+        if (err) {
+          console.log('写入文件错误')
+        } else {
+          console.log('写入文件成功')
+        }
+      })
+    });
   }catch (error) {
     // 处理错误情况
     res.statusCode = 500;
